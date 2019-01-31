@@ -1,0 +1,90 @@
+{% load staticfiles %}
+{% load fontawesome %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'bower_components/bootstrap/dist/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'bower_components/components-font-awesome/css/font-awesome.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block extra_stylesheets %}
+
+    {% endblock %}
+</head>
+<body>
+
+<nav class="navbar navbar-expand-sm bg-danger navbar-fixed-top">
+    <a class="navbar-brand ml-1" href="{% url 'category:create' %}">
+        <i class="fa fa-2x fa-home"></i></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse ml-5" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-tags"></i> Category
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="{% url 'category:create' %}">Add</a>
+                    <a class="dropdown-item" href="{% url 'category:list' %}">List</a>
+                    <a class="dropdown-item" href="{% url 'category:trash_list' %}">Trash</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fa fa-money"></i> Purchase</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fa fa-btc" aria-hidden="true"></i> Sales</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+{% block breadcrumb_head %}
+
+{% endblock %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}" role="alert">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">X</a>
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% block content %}
+
+{% endblock %}
+
+
+<script src="{% static 'bower_components/jquery/dist/jquery.min.js' %}"></script>
+<script src="{% static 'bower_components/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+
+{% block extra_scripts %}
+
+{% endblock %}
+
+{#<script>#}
+{#$(document).ready(function(){#}
+{#  $("#myBtn").click(function(){#}
+{#    $("#myModal").modal();#}
+{#  });#}
+{#});#}
+{#</script>#}
+
+</body>
+</html>
